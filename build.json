@@ -1,0 +1,44 @@
+{
+  "ios": {
+    "debug": {
+      "codeSignIdentity": "iPhone Developer",
+      "developmentTeam": "6SDM5WXHZ6",
+      "packageType": "development",
+      "automaticProvisioning": true,
+      "buildFlag": [
+        "EMBEDDED_CONTENT_CONTAINS_SWIFT = YES",
+        "ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES=NO",
+        "LD_RUNPATH_SEARCH_PATHS = \"@executable_path/Frameworks\""
+      ]
+    },
+    "release": {
+      "codeSignIdentity": "iPhone Developer",
+      "developmentTeam": "6SDM5WXHZ6",
+      "packageType": "app-store",
+      "automaticProvisioning": true,
+      "buildFlag": [
+        "EMBEDDED_CONTENT_CONTAINS_SWIFT = YES",
+        "ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES=NO",
+        "LD_RUNPATH_SEARCH_PATHS = \"@executable_path/Frameworks\""
+      ]
+    }
+  },
+  "android": {
+    "debug": {
+      "keystore": "./android.keystore",
+      "storePassword": "android",
+      "alias": "key1",
+      "password" : "android",
+      "keystoreType": "",
+      "packageType": "bundle"
+    },
+    "release": {
+      "keystore": "./android.keystore",
+      "storePassword": "android",
+      "alias": "key1",
+      "password" : "android",
+      "keystoreType": "",
+      "packageType": "bundle"
+    }
+  }
+}
