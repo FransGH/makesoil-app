@@ -441,34 +441,34 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "6D5BEA5A-E466-413D-92EF-DFDF3EFCA62A - 95eb06b637105c92"
+                  uuid = "6D5BEA5A-E466-413D-92EF-DFDF3EFCA62A - c85d4a1a23687f86"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "-[NativeStorage putString:]"
                   moduleName = "MakeSoil"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/frans/Checkout/MakeSoil/App/platforms/ios/MakeSoil/Plugins/cordova-plugin-nativestorage/NativeStorage.m"
+                  urlString = "file:///Users/frans/Projects/MakeSoil/App/platforms/ios/MakeSoil/Plugins/cordova-plugin-nativestorage/NativeStorage.m"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "198"
                   endingLineNumber = "198"
-                  offsetFromSymbolStart = "44">
+                  offsetFromSymbolStart = "56">
                </Location>
                <Location
-                  uuid = "6D5BEA5A-E466-413D-92EF-DFDF3EFCA62A - 32517c592c918507"
+                  uuid = "6D5BEA5A-E466-413D-92EF-DFDF3EFCA62A - 6fe730f538e9a5f0"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "__27-[NativeStorage putString:]_block_invoke"
                   moduleName = "MakeSoil"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/frans/Checkout/MakeSoil/App/platforms/ios/MakeSoil/Plugins/cordova-plugin-nativestorage/NativeStorage.m"
+                  urlString = "file:///Users/frans/Projects/MakeSoil/App/platforms/ios/MakeSoil/Plugins/cordova-plugin-nativestorage/NativeStorage.m"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "198"
-                  endingLineNumber = "198"
-                  offsetFromSymbolStart = "16">
+                  startingLineNumber = "199"
+                  endingLineNumber = "199"
+                  offsetFromSymbolStart = "32">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -489,34 +489,34 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "43E8770A-979B-4EF6-BE47-5A59C7130869 - 50511932fafa41b0"
+                  uuid = "43E8770A-979B-4EF6-BE47-5A59C7130869 - de7559eee8260a4"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "-[NativeStorage getString:]"
                   moduleName = "MakeSoil"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/frans/Checkout/MakeSoil/App/platforms/ios/MakeSoil/Plugins/cordova-plugin-nativestorage/NativeStorage.m"
+                  urlString = "file:///Users/frans/Projects/MakeSoil/App/platforms/ios/MakeSoil/Plugins/cordova-plugin-nativestorage/NativeStorage.m"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "221"
                   endingLineNumber = "221"
-                  offsetFromSymbolStart = "44">
+                  offsetFromSymbolStart = "56">
                </Location>
                <Location
-                  uuid = "43E8770A-979B-4EF6-BE47-5A59C7130869 - 4ae2481739c8c527"
+                  uuid = "43E8770A-979B-4EF6-BE47-5A59C7130869 - 175404bb2db0e5d2"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "__27-[NativeStorage getString:]_block_invoke"
                   moduleName = "MakeSoil"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/frans/Checkout/MakeSoil/App/platforms/ios/MakeSoil/Plugins/cordova-plugin-nativestorage/NativeStorage.m"
+                  urlString = "file:///Users/frans/Projects/MakeSoil/App/platforms/ios/MakeSoil/Plugins/cordova-plugin-nativestorage/NativeStorage.m"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "221"
-                  endingLineNumber = "221"
-                  offsetFromSymbolStart = "12">
+                  startingLineNumber = "222"
+                  endingLineNumber = "222"
+                  offsetFromSymbolStart = "32">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -694,6 +694,22 @@
             startingLineNumber = "269"
             endingLineNumber = "269"
             landmarkName = "-getItem:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5477164B-491F-4208-B4BF-BD42D47D866E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CordovaLib/Classes/Public/CDVViewController.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "527"
+            endingLineNumber = "527"
+            landmarkName = "-createLaunchView"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

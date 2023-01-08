@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="org.staging.makesoil.app" version="1.0.18" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="org.makesoil.app" version="1.1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>MakeSoil</name>
-    <description>MakeSoil Staging</description>
+    <description>MakeSoil</description>
     <author email="dev@makesoil.org" href="https://makesoil.org">
         MakeSoil Dev Team
     </author>
@@ -10,8 +10,10 @@
     <allow-intent href="https://*/*" />
     <access origin="about:*" />
     <allow-navigation href="about:" />
-    <access origin="https://proxy.blink.at" />
-    <allow-navigation href="https://proxy.blink.at/*" />
+    <access origin="https://makesoil.org" />
+    <access origin="https://www.makesoil.org" />
+    <allow-navigation href="makesoil.org/*" />
+    <allow-navigation href="www.makesoil.org/*" />
     <allow-navigation href="https://www.youtube.com/*" />
     <allow-navigation href="https://www.dafdirect.org/*" />
     <allow-navigation href="https://donorbox.org/*" />
@@ -74,5 +76,5 @@
     <preference name="GradlePluginGoogleServicesEnabled" value="false" />
     <splash src="res/production/ios/Default@2x~universal~anyany.png" />
     <preference name="AppendUserAgent" value="MakeSoil" />
-    <preference name="targetDomain" value="https://proxy.blink.at"/>
+    <preference name="targetDomain" value="https://www.makesoil.org"/>
 </widget>
