@@ -28,15 +28,13 @@
 	<dict>
 		<key>NSExceptionDomains</key>
 		<dict>
+			<key>proxy.blink.at</key>
+			<dict/>
 			<key>www.youtube.com</key>
 			<dict/>
 			<key>www.dafdirect.org</key>
 			<dict/>
 			<key>donorbox.org</key>
-			<dict/>
-			<key>makesoil.org</key>
-			<dict/>
-			<key>www.makesoil.org</key>
 			<dict/>
 		</dict>
 	</dict>

@@ -69,7 +69,8 @@
         <!-- iTunes Marketing Image -->
         <icon src="res/production/ios/icon-1024.png" width="1024" height="1024" />
     </platform>
-    <preference name="android-targetSdkVersion" value="30" />
+    <preference name="android-targetSdkVersion" value="32" />
+    <preference name="GradlePluginKotlinVersion" value="1.6.20" />
     <preference name="AndroidXEnabled" value="false" />
     <preference name="GradlePluginGoogleServicesEnabled" value="false" />
     <splash src="res/production/ios/Default@2x~universal~anyany.png" />

@@ -499,7 +499,10 @@ public class InAppBrowser extends CordovaPlugin {
         // If the current app package isn't a target for this URL, then use
         // the normal launch behavior
         if (hasCurrentPackage == false || targetIntents.size() == 0) {
-            this.cordova.getActivity().startActivity(intent);
+            String url = intent.getDataString();
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW);
+            browserIntent.setDataAndType(Uri.parse(url), "text/html");
+            this.cordova.getActivity().startActivity(browserIntent);
         }
         // If there's only one possible intent, launch it directly
         else if (targetIntents.size() == 1) {
