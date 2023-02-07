@@ -17,24 +17,24 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.1.0</string>
+	<string>1.2.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.1.0</string>
+	<string>1.2.0</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSExceptionDomains</key>
 		<dict>
-			<key>proxy.blink.at</key>
-			<dict/>
 			<key>www.youtube.com</key>
 			<dict/>
 			<key>www.dafdirect.org</key>
 			<dict/>
 			<key>donorbox.org</key>
+			<dict/>
+			<key>makesoil2-staging.herokuapp.com</key>
 			<dict/>
 		</dict>
 	</dict>

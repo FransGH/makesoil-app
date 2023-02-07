@@ -24,6 +24,10 @@ if (cordovaConfig.IS_GRADLE_PLUGIN_KOTLIN_ENABLED) {
     apply plugin: 'kotlin-android-extensions'
 }
 
+task fixImports(type: Exec) {
+    commandLine "./fixImports.sh ${privateHelpers.extractStringFromManifest("package")}"
+}
+
 buildscript {
     apply from: '../CordovaLib/cordova.gradle'
 
@@ -55,6 +59,7 @@ buildscript {
             println "Adding classpath: ${gradlePluginGoogleServicesClassPath}"
             classpath gradlePluginGoogleServicesClassPath
         }
+
     }
 }
 
@@ -180,6 +185,7 @@ task cdvPrintProps {
 }
 
 android {
+    namespace privateHelpers.extractStringFromManifest("package")
     defaultConfig {
         versionCode cdvVersionCode ?: new BigInteger("" + privateHelpers.extractIntFromManifest("versionCode"))
         applicationId privateHelpers.extractStringFromManifest("package")
@@ -296,8 +302,8 @@ dependencies {
 
     // SUB-PROJECT DEPENDENCIES START
     implementation(project(path: ":CordovaLib"))
-    implementation "com.google.gms:google-services:4.3.10"
-    implementation "com.google.firebase:firebase-messaging:20.0.1"
+    implementation "com.google.gms:google-services:4.3.15"
+    implementation "com.google.firebase:firebase-messaging:23.1.1"
     // SUB-PROJECT DEPENDENCIES END
 }
 

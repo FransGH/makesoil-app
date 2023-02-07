@@ -1,11 +1,12 @@
 package notifications
 
 import android.util.Log
-import com.google.firebase.iid.FirebaseInstanceId
+import com.google.android.gms.tasks.Task
 import org.apache.cordova.CallbackContext
 import org.apache.cordova.CordovaPlugin
 import org.json.JSONArray
 import org.json.JSONException
+import com.google.firebase.messaging.FirebaseMessaging
 
 class Notifications: CordovaPlugin() {
   companion object {
@@ -14,6 +15,7 @@ class Notifications: CordovaPlugin() {
   var lastTapedNotification = ""
 
   override fun pluginInitialize() {
+    Log.d(TAG, "initialize")
     val activity = cordova.activity
     val extras = activity.intent.extras
     if (extras != null) {
@@ -33,11 +35,13 @@ class Notifications: CordovaPlugin() {
       when (action) {
         "registration" -> {
           cordova.threadPool.execute {
+            Log.d(TAG, "get token")
             getFirebaseToken(context)
           }
         }
         "tapped" -> {
           cordova.threadPool.execute {
+            Log.d(TAG, "notification tapped")
             val res = lastTapedNotification
             lastTapedNotification = ""
             context.success(res)
@@ -57,8 +61,11 @@ class Notifications: CordovaPlugin() {
   }
 
   private fun getFirebaseToken(context: CallbackContext) {
-    FirebaseInstanceId.getInstance().instanceId.addOnSuccessListener { instanceIdResult ->
-      val token = instanceIdResult.token
+    FirebaseMessaging.getInstance().token.addOnCompleteListener { task: Task<String> ->
+      if (!task.isSuccessful) {
+        return@addOnCompleteListener
+      }
+      var token = task.result
       Log.d("FIREBASE TOKEN", token)
       context.success(token)
     }

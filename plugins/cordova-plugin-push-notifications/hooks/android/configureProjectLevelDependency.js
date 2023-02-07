@@ -4,7 +4,7 @@ const path = require('path')
 function addProjectLevelDependency(platformRoot) {
   return new Promise((resolve, reject) => {
     try {
-      const lib = 'com.google.gms:google-services:4.3.10'
+      const lib = 'com.google.gms:google-services:4.3.15'
       const dependency = `classpath '${lib}'`
     
       const projectBuildFile = path.join(platformRoot, 'build.gradle')

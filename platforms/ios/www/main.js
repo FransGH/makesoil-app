@@ -36,7 +36,7 @@ async function loadApp(targetdomain) {
             }
         });
         // load the web-app in the iframe
-        initApp();
+        initApp(targetdomain);
     }
     catch(e) { // on error, try reloading after short timeout
         console.log("Loading failed, retrying... err=", e);

@@ -42,6 +42,12 @@ public class InAppBrowserDialog extends Dialog {
     }
 
     public void onBackPressed () {
+
+        if (this.inAppBrowser != null && this.inAppBrowser.hardwareBack() && this.inAppBrowser.canGoBack()) {
+            this.inAppBrowser.goBack();
+        }
+
+/*  disable hardware back button for makesoil
         if (this.inAppBrowser == null) {
             this.dismiss();
         } else {
@@ -53,5 +59,6 @@ public class InAppBrowserDialog extends Dialog {
                 this.inAppBrowser.closeDialog();
             }
         }
+*/
     }
 }
