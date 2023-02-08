@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="org.staging.makesoil.app" version="1.2.7" xmlns="http://www.w3.org/ns/widgets" xmlns:android="schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <feature name="Badge">
+        <param name="android-package" value="de.appplant.cordova.plugin.badge.Badge" />
+    </feature>
+    <feature name="PushNotification">
+        <param name="android-package" value="notifications.Notifications" />
+    </feature>
+    <feature name="CustomConfigParameters">
+        <param name="android-package" value="org.apache.cordova.customconfigparameters.CustomConfigParameters" />
+    </feature>
+    <feature name="Device">
+        <param name="android-package" value="org.apache.cordova.device.Device" />
+    </feature>
+    <feature name="Geolocation">
+        <param name="android-package" value="org.apache.cordova.geolocation.Geolocation" />
+    </feature>
+    <feature name="InAppBrowser">
+        <param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
+    </feature>
+    <feature name="NativeStorage">
+        <param name="android-package" value="NativeStorage" />
+    </feature>
+    <name>MakeSoil</name>
+    <description>MakeSoil Staging</description>
+    <author email="dev@makesoil.org" href="https://makesoil.org">
+        MakeSoil Dev Team
+    </author>
+    <content src="index.html" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <access origin="about:*" />
+    <allow-navigation href="about:" />
+    <access origin="https://proxy.blink.at" />
+    <allow-navigation href="https://proxy.blink.at/*" />
+    <allow-navigation href="https://www.youtube.com/*" />
+    <allow-navigation href="https://www.dafdirect.org/*" />
+    <allow-navigation href="https://donorbox.org/*" />
+    <resource-file src="res/staging/android/google-services.json" target="app/google-services.json" />
+    <preference name="loglevel" value="DEBUG" />
+    <preference name="GradlePluginKotlinEnabled" value="true" />
+    <preference name="GradlePluginKotlinCodeStyle" value="official" />
+    <preference name="GradlePluginKotlinVersion" value="1.6.20" />
+    <preference name="AppendUserAgent" value="MakeSoil" />
+    <preference name="targetDomain" value="https://proxy.blink.at" />
+    <preference name="AndroidWindowSplashScreenBackground" value="#45B139" />
+    <preference name="AndroidWindowSplashScreenAnimatedIcon" value="platforms/android/app/src/main/res/drawable/ic_splashscreen.xml" />
+    <preference name="AndroidXEnabled" value="true" />
+    <preference name="android-targetSdkVersion" value="32" />
+    <preference name="GradlePluginGoogleServicesEnabled" value="true" />
+</widget>
