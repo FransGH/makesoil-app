@@ -3,6 +3,7 @@ package notifications
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
+import android.app.TaskStackBuilder
 import android.content.ContentResolver
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -14,8 +15,6 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
-import org.makesoil.app.MainActivity
-import org.makesoil.app.R
 import java.util.concurrent.atomic.AtomicInteger
 
 class MyFirebaseMessagingService : FirebaseMessagingService() {
@@ -23,36 +22,31 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         private const val TAG = "pushService"
     }
 
-    val mainfestIconKey = "com.google.firebase.messaging.default_notification_icon"
-    val mainfestChannelKey = "com.google.firebase.messaging.default_notification_channel_id"
-    val mainfestColorKey = "com.google.firebase.messaging.default_notification_color"
-
-    private var defaultNotificationIcon = 0
-    private var defaultNotificationColor = 0
-    private var defaultNotificationChannelID = "general"
+    private val defaultNotificationChannelID = "general"
     private var notificationManager: NotificationManager? = null
+    private var currentToken = ""
 
-    var mainActivity: Class<*>? = null
+    private var mainActivity: Class<*>? = null
+    private var notificationIcons = 0
+    private var notificationColor = 0
+
+    override fun onNewToken(token: String) {
+        super.onNewToken(token)
+        Log.d(TAG, "newToken: " + token)
+        currentToken = token;
+    }
 
     override fun onCreate() {
         notificationManager = ContextCompat.getSystemService(this, NotificationManager::class.java)
-
-        Log.d(TAG, "create");
-
+        Log.d(TAG, "creating push service")
         try {
-            // Get MainActivity without import
-            var launchIntent: Intent? =
-                packageManager.getLaunchIntentForPackage(applicationContext.packageName)
-            var className = launchIntent?.component?.className as String
+            val launchIntent: Intent? = packageManager.getLaunchIntentForPackage(applicationContext.packageName)
+            val className = launchIntent?.component?.className as String
             mainActivity = Class.forName(className)
+            notificationIcons = resources.getIdentifier("notification_icons", "drawable", packageName)
+            notificationColor = resources.getIdentifier("cdv_splashscreen_background", "color", packageName)
 
-            // Other
-            val ai = packageManager.getApplicationInfo(
-                applicationContext.packageName,
-                PackageManager.GET_META_DATA
-            )
 
-            defaultNotificationChannelID = ai.metaData.getString(mainfestChannelKey, "general")
             val channel: NotificationChannel
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 channel = NotificationChannel(
@@ -61,10 +55,8 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
                     NotificationManager.IMPORTANCE_HIGH
                 )
                 notificationManager!!.createNotificationChannel(channel)
-                Log.d(TAG, "creating channel: " + channel.id);
+                Log.d(TAG, "creating channel: " + channel.id)
             }
-            defaultNotificationIcon = ai.metaData.getInt(mainfestIconKey, ai.icon)
-            defaultNotificationColor = ai.metaData.getInt(mainfestColorKey, 0)
         } catch (e: PackageManager.NameNotFoundException) {
             Log.e(TAG, "Failed to load data from AndroidManifest.xml", e)
         }
@@ -73,35 +65,26 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
     override fun onMessageReceived(p0: RemoteMessage) {
         super.onMessageReceived(p0)
-
-        if (p0 !== null && p0.data !== null) {
-            var data = p0.data;
-            for ((key, value) in data) {
-                Log.d(TAG, "notification: " + key + " => " + value);
-            }
-            sendNotification(data)
-        } else {
-            Log.d(TAG, "missing notification: " + p0.toString())
+        val data = p0.data
+        for ((key, value) in data) {
+            Log.d(TAG, "notification: $key => $value")
         }
+        sendNotification(data)
     }
 
     private fun sendNotification(data: Map<String, String>) {
-        val title = data["title"]
-        val body = data["body"]
-        var channel_id = data["android_channel_id"]
-        var action = data["click_action"]
+        val title = data["title"] ?: "MakeSoil"
+        val body = data["body"] ?: ""
+        val channelId = data["android_channel_id"] ?: defaultNotificationChannelID
+        val action = data["click_action"]
+        val badgeCount = data["notification_count"] ?: "0"
 
-        var resultIntent = Intent(this, mainActivity)
+        val resultIntent = Intent(this, mainActivity)
 
         if (action != null) {
             resultIntent.putExtra("pushNotification", action)
         }
 
-        if (channel_id == null) {
-            channel_id = defaultNotificationChannelID
-        }
-
-        /*
         val resultPendingIntent: PendingIntent? = TaskStackBuilder.create(this).run {
             addNextIntentWithParentStack(resultIntent)
             if (Build.VERSION.SDK_INT >= 31) {
@@ -113,33 +96,34 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
                 getPendingIntent(101, PendingIntent.FLAG_CANCEL_CURRENT)
             }
         }
-         */
-
-        val notifyIntent = Intent(this, MainActivity::class.java).apply {
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        }
-        val resultPendingIntent = PendingIntent.getActivity(
-            this, 0, notifyIntent,
-            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
-        )
 
         // Create notification
-        var soundUri =
-            Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + applicationContext.packageName + "/raw/" + channel_id)
+        val soundUri =
+            Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + applicationContext.packageName + "/raw/" + channelId)
 
-        val notificationBuilder = NotificationCompat.Builder(this, channel_id)
-            .setSmallIcon(R.drawable.notification_icons)
-            .setColor(resources.getColor(R.color.cdv_splashscreen_background))
+        val notificationBuilder = NotificationCompat.Builder(this, channelId)
+            .setSmallIcon(notificationIcons)
+            .setColor(getColorWrapper(notificationColor))
             .setSound(soundUri)
             .setContentTitle(title)
             .setContentText(body)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setAutoCancel(true)
+            .setNumber(badgeCount.toInt())
             .setContentIntent(resultPendingIntent)
 
         with(NotificationManagerCompat.from(this)) {
             val notificationId = (AtomicInteger(0)).incrementAndGet()
             notify(notificationId, notificationBuilder.build())
+        }
+    }
+
+    private fun getColorWrapper(colorId: Int): Int {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            resources.getColor(colorId, null)
+        } else {
+            @Suppress("DEPRECATION")
+            resources.getColor(colorId)
         }
     }
 }

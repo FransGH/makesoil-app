@@ -79,7 +79,7 @@
           ],
           "/manifest/application": [
             {
-              "xml": "<meta-data android:name=\"com.google.firebase.messaging.default_notification_channel_id\" android:value=\"444\" />",
+              "xml": "<meta-data android:name=\"com.google.firebase.messaging.default_notification_channel_id\" android:value=\"general\" />",
               "count": 1
             },
             {
