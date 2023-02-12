@@ -17,11 +17,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.2.0</string>
+	<string>1.2.10</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.2.0</string>
+	<string>1.2.10</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -34,7 +34,9 @@
 			<dict/>
 			<key>donorbox.org</key>
 			<dict/>
-			<key>makesoil2-staging.herokuapp.com</key>
+			<key>makesoil.org</key>
+			<dict/>
+			<key>www.makesoil.org</key>
 			<dict/>
 		</dict>
 	</dict>

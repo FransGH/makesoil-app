@@ -40,12 +40,14 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         notificationManager = ContextCompat.getSystemService(this, NotificationManager::class.java)
         Log.d(TAG, "creating push service")
         try {
-            val launchIntent: Intent? = packageManager.getLaunchIntentForPackage(applicationContext.packageName)
+            val launchIntent: Intent? =
+                packageManager.getLaunchIntentForPackage(applicationContext.packageName)
             val className = launchIntent?.component?.className as String
             mainActivity = Class.forName(className)
-            notificationIcons = resources.getIdentifier("notification_icons", "drawable", packageName)
-            notificationColor = resources.getIdentifier("cdv_splashscreen_background", "color", packageName)
-
+            notificationIcons =
+                resources.getIdentifier("notification_icons", "drawable", packageName)
+            notificationColor =
+                resources.getIdentifier("cdv_splashscreen_background", "color", packageName)
 
             val channel: NotificationChannel
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -54,6 +56,9 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
                     "Miscellaneous",
                     NotificationManager.IMPORTANCE_HIGH
                 )
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                    channel.setShowBadge(true)
+                }
                 notificationManager!!.createNotificationChannel(channel)
                 Log.d(TAG, "creating channel: " + channel.id)
             }

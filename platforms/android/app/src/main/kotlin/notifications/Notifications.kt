@@ -1,30 +1,55 @@
 package notifications
 
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Bundle
 import android.util.Log
 import com.google.android.gms.tasks.Task
+import com.google.firebase.messaging.FirebaseMessaging
 import org.apache.cordova.CallbackContext
 import org.apache.cordova.CordovaPlugin
 import org.json.JSONArray
 import org.json.JSONException
-import com.google.firebase.messaging.FirebaseMessaging
 
 class Notifications: CordovaPlugin() {
   companion object {
     private const val TAG = "pushNotification"
   }
   var lastTapedNotification = ""
+  var targetDomain = "";
 
   override fun pluginInitialize() {
     Log.d(TAG, "initialize")
     val activity = cordova.activity
-    val extras = activity.intent.extras
+    val intent = activity.intent
+    val extras = intent.extras
+    val data = intent.data
+
+    val metaData = cordova.context.getPackageManager().getApplicationInfo(cordova.context.getPackageName(), PackageManager.GET_META_DATA).metaData
+    targetDomain = metaData.getString("org.makesoil.app.targetdomain", "<no target domain>")
+    Log.d(TAG, "targetDomain=" + targetDomain)
+
     if (extras != null) {
       val payload = extras.getString("pushNotification")
       if (payload != null) {
         lastTapedNotification = payload
       }
     }
+    else if(data != null) {
+      lastTapedNotification = data.toString();
+    }
+
+    Log.d(TAG, "notificationUrl=" + lastTapedNotification)
+
     super.pluginInitialize()
+  }
+
+  override fun onNewIntent(intent: Intent?) {
+    super.onNewIntent(intent)
+    if (intent != null && (intent.action == "android.intent.action.MAIN" || intent.action == "android.intent.action.VIEW") && intent.data != null) {
+        lastTapedNotification = intent.data.toString()
+        Log.d(TAG, "smartLinkUrl=" + lastTapedNotification)
+    }
   }
 
   @Throws(JSONException::class)
@@ -41,9 +66,9 @@ class Notifications: CordovaPlugin() {
         }
         "tapped" -> {
           cordova.threadPool.execute {
-            Log.d(TAG, "notification tapped")
-            val res = lastTapedNotification
+            val res = lastTapedNotification.replace(targetDomain ,"")
             lastTapedNotification = ""
+            Log.d(TAG, "notification tapped => " + res)
             context.success(res)
           }
         }

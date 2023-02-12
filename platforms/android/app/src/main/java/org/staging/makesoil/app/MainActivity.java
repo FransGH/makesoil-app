@@ -19,9 +19,18 @@
 
 package org.staging.makesoil.app;
 
+import android.app.AlarmManager;
+import android.app.Notification;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import com.google.firebase.FirebaseApp;
 import org.apache.cordova.*;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainActivity extends CordovaActivity
 {
@@ -29,7 +38,7 @@ public class MainActivity extends CordovaActivity
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        LOG.d("Activity", "creating main activity");
+        LOG.d("Activity", "creating main activity data=" + getIntent().getDataString());
 
         FirebaseApp.initializeApp(this);
 

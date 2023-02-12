@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="org.staging.makesoil.app" version="1.2.8" xmlns="http://www.w3.org/ns/widgets" xmlns:android="schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="org.staging.makesoil.app" version="1.2.12" xmlns="http://www.w3.org/ns/widgets" xmlns:android="schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <feature name="Badge">
         <param name="android-package" value="de.appplant.cordova.plugin.badge.Badge" />
     </feature>
@@ -37,6 +37,12 @@
     <allow-navigation href="https://www.dafdirect.org/*" />
     <allow-navigation href="https://donorbox.org/*" />
     <resource-file src="res/staging/android/google-services.json" target="app/google-services.json" />
+    <config-file parent="/manifest/application/activity/intent-filter" target="AndroidManifest.xml">
+        <data android:host="proxy.blink.at" android:pathPrefix="/" android:scheme="https" />
+    </config-file>
+    <config-file parent="/manifest/application" target="AndroidManifest.xml">
+        <meta-data android:name="org.makesoil.app.targetdomain" android:value="https://proxy.blink.at" />
+    </config-file>
     <preference name="loglevel" value="DEBUG" />
     <preference name="GradlePluginKotlinEnabled" value="true" />
     <preference name="GradlePluginKotlinCodeStyle" value="official" />
@@ -46,6 +52,7 @@
     <preference name="AndroidWindowSplashScreenBackground" value="#45B139" />
     <preference name="AndroidWindowSplashScreenAnimatedIcon" value="platforms/android/app/src/main/res/drawable/ic_splashscreen.xml" />
     <preference name="AndroidXEnabled" value="true" />
+    <preference name="android-minSdkVersion" value="23" />
     <preference name="android-targetSdkVersion" value="32" />
     <preference name="GradlePluginGoogleServicesEnabled" value="true" />
 </widget>

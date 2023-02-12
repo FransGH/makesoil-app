@@ -17,8 +17,15 @@
 
 package de.appplant.cordova.plugin.badge;
 
+import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -27,11 +34,16 @@ import me.leolin.shortcutbadger.ShortcutBadger;
 
 import static me.leolin.shortcutbadger.ShortcutBadger.isBadgeCounterSupported;
 
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
+
 /**
  * Implementation of the badge interface methods.
  */
 @SuppressWarnings("WeakerAccess")
 public final class BadgeImpl {
+
+    private static final String TAG = "BADGE";
 
     // The name for the shared preferences key
     private static final String BADGE_KEY = "badge";
@@ -44,6 +56,8 @@ public final class BadgeImpl {
 
     // if the device does support native badges
     private final boolean isSupported;
+
+    private NotificationCompat.Builder mBuilder = null;
 
     /**
      * Initializes the impl with the context of the app.
@@ -58,7 +72,7 @@ public final class BadgeImpl {
             ctx         = context.getApplicationContext();
             isSupported = isBadgeCounterSupported(ctx);
         }
-
+        updateNotification(getBadge());
         ShortcutBadger.applyCount(ctx, getBadge());
     }
 
@@ -96,6 +110,44 @@ public final class BadgeImpl {
         ShortcutBadger.applyCount(ctx, badge);
     }
 
+    public void updateNotification(int badge) {
+        if(badge == 0) {
+            NotificationManagerCompat.from(ctx).cancelAll();
+            mBuilder = null;
+        }
+        else {
+            if (mBuilder == null) {
+                mBuilder = new NotificationCompat.Builder(ctx, "general");
+            }
+
+            try {
+                Intent launchIntent = ctx.getPackageManager().getLaunchIntentForPackage(ctx.getPackageName());
+                String className = launchIntent.getComponent().getClassName();
+                Class mainActivityClass = Class.forName(className).getClass();
+                Intent intent = new Intent (ctx, mainActivityClass);
+                TaskStackBuilder stackBuilder = TaskStackBuilder.create(ctx);
+//                stackBuilder.addParentStack(mainActivityClass);
+                stackBuilder.addNextIntent(intent);
+                PendingIntent pendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+
+                mBuilder.setNumber(badge)
+                        .setSmallIcon(ctx.getResources().getIdentifier("notification_icons", "drawable", ctx.getPackageName()))
+                        .setColor(ctx.getResources().getIdentifier("cdv_splashscreen_background", "color", ctx.getPackageName()))
+                        .setContentTitle("MakeSoil")
+                        .setContentText(String.format("You have %d unread %s", badge, badge > 1 ? " messages" : "message"))
+//                    .setDefaults(Notification.DEFAULT_ALL)
+                        .setContentIntent(pendingIntent)
+                        .setSilent(true)
+                        .setPriority(Notification.PRIORITY_MIN);
+                NotificationManagerCompat.from(ctx).notify(0xFBFB, mBuilder.build());
+            }
+            catch (Exception e) {
+                Log.d(TAG, e.toString());
+            }
+
+        }
+    }
+
     /**
      * Get the persisted config map.
      */
@@ -128,10 +180,11 @@ public final class BadgeImpl {
      * @param badge The badge number to persist.
      */
     private void saveBadge (int badge) {
+        Log.d(TAG, "set count=" + badge);
         SharedPreferences.Editor editor = getPrefs().edit();
-
         editor.putInt(BADGE_KEY, badge);
         editor.apply();
+        updateNotification(badge);
     }
 
     /**

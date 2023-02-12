@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="org.staging.makesoil.app" version="1.2.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="org.makesoil.app" version="1.2.10" xmlns="http://www.w3.org/ns/widgets" xmlns:android="schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <feature name="CDVWebViewEngine">
         <param name="ios-package" value="CDVWebViewEngine" />
     </feature>
@@ -48,7 +48,7 @@
         <param name="onload" value="true" />
     </feature>
     <name>MakeSoil</name>
-    <description>MakeSoil Staging</description>
+    <description>MakeSoil</description>
     <author email="dev@makesoil.org" href="https://makesoil.org">
         MakeSoil Dev Team
     </author>
@@ -57,12 +57,13 @@
     <allow-intent href="https://*/*" />
     <access origin="about:*" />
     <allow-navigation href="about:" />
-    <access origin="https://makesoil2-staging.herokuapp.com" />
-    <allow-navigation href="makesoil2-staging.herokuapp.com/*" />
+    <access origin="https://makesoil.org" />
+    <access origin="https://www.makesoil.org" />
+    <allow-navigation href="makesoil.org/*" />
+    <allow-navigation href="www.makesoil.org/*" />
     <allow-navigation href="https://www.youtube.com/*" />
     <allow-navigation href="https://www.dafdirect.org/*" />
     <allow-navigation href="https://donorbox.org/*" />
-    <splash src="res/staging/ios/Default@2x~universal~anyany.png" />
     <edit-config file="*-Info.plist" mode="merge" target="ITSAppUsesNonExemptEncryption">
         <false />
     </edit-config>
@@ -76,32 +77,33 @@
         <string>MakeSoil only uses your location to match you with nearby soil sites.</string>
     </edit-config>
     <edit-config file="*-Info.plist" mode="merge" target="NSCameraUsageDescription">
-        <string>MakeSoil only uses your camera to enable taking and uploading photos.</string>
+        <string>MakeSoil only uses your camera to enable taking and uploading of photos.</string>
     </edit-config>
     <edit-config file="*-Info.plist" mode="merge" target="NSPhotoLibraryUsageDescription">
-        <string>MakeSoil only uses your photo library to allow selection and upload of photos.</string>
+        <string>MakeSoil only uses your photo library to enable selection and uploading of photos.</string>
     </edit-config>
-    <icon height="180" src="res/staging/ios/icon-60@3x.png" width="180" />
-    <icon height="60" src="res/staging/ios/icon-60.png" width="60" />
-    <icon height="120" src="res/staging/ios/icon-60@2x.png" width="120" />
-    <icon height="76" src="res/staging/ios/icon-76.png" width="76" />
-    <icon height="152" src="res/staging/ios/icon-76@2x.png" width="152" />
-    <icon height="20" src="res/staging/ios/icon-20.png" width="20" />
-    <icon height="40" src="res/staging/ios/icon-20@2x.png" width="40" />
-    <icon height="40" src="res/staging/ios/icon-40.png" width="40" />
-    <icon height="80" src="res/staging/ios/icon-40@2x.png" width="80" />
-    <icon height="120" src="res/staging/ios/icon-40@3x.png" width="120" />
-    <icon height="57" src="res/staging/ios/icon.png" width="57" />
-    <icon height="114" src="res/staging/ios/icon@2x.png" width="114" />
-    <icon height="72" src="res/staging/ios/icon-72.png" width="72" />
-    <icon height="144" src="res/staging/ios/icon-72@2x.png" width="144" />
-    <icon height="167" src="res/staging/ios/icon-167.png" width="167" />
-    <icon height="29" src="res/staging/ios/icon-29.png" width="29" />
-    <icon height="58" src="res/staging/ios/icon-29@2x.png" width="58" />
-    <icon height="87" src="res/staging/ios/icon-29@3x.png" width="87" />
-    <icon height="50" src="res/staging/ios/icon-50.png" width="50" />
-    <icon height="100" src="res/staging/ios/icon-50@2x.png" width="100" />
-    <icon height="1024" src="res/staging/ios/icon-1024.png" width="1024" />
+    <icon height="180" src="res/production/ios/icon-60@3x.png" width="180" />
+    <icon height="60" src="res/production/ios/icon-60.png" width="60" />
+    <icon height="120" src="res/production/ios/icon-60@2x.png" width="120" />
+    <icon height="76" src="res/production/ios/icon-76.png" width="76" />
+    <icon height="152" src="res/production/ios/icon-76@2x.png" width="152" />
+    <icon height="20" src="res/production/ios/icon-20.png" width="20" />
+    <icon height="40" src="res/production/ios/icon-20@2x.png" width="40" />
+    <icon height="40" src="res/production/ios/icon-40.png" width="40" />
+    <icon height="80" src="res/production/ios/icon-40@2x.png" width="80" />
+    <icon height="120" src="res/production/ios/icon-40@3x.png" width="120" />
+    <icon height="57" src="res/production/ios/icon.png" width="57" />
+    <icon height="114" src="res/production/ios/icon@2x.png" width="114" />
+    <icon height="72" src="res/production/ios/icon-72.png" width="72" />
+    <icon height="144" src="res/production/ios/icon-72@2x.png" width="144" />
+    <icon height="167" src="res/production/ios/icon-167.png" width="167" />
+    <icon height="29" src="res/production/ios/icon-29.png" width="29" />
+    <icon height="58" src="res/production/ios/icon-29@2x.png" width="58" />
+    <icon height="87" src="res/production/ios/icon-29@3x.png" width="87" />
+    <icon height="50" src="res/production/ios/icon-50.png" width="50" />
+    <icon height="100" src="res/production/ios/icon-50@2x.png" width="100" />
+    <icon height="1024" src="res/production/ios/icon-1024.png" width="1024" />
+    <splash src="res/production/ios/Default@2x~universal~anyany.png" />
     <preference name="AllowInlineMediaPlayback" value="false" />
     <preference name="BackupWebStorage" value="cloud" />
     <preference name="DisallowOverscroll" value="false" />
@@ -115,10 +117,6 @@
     <preference name="PageLength" value="0" />
     <preference name="PaginationBreakingMode" value="page" />
     <preference name="PaginationMode" value="unpaginated" />
-    <preference name="android-targetSdkVersion" value="32" />
-    <preference name="GradlePluginKotlinVersion" value="1.6.20" />
-    <preference name="AndroidXEnabled" value="false" />
-    <preference name="GradlePluginGoogleServicesEnabled" value="false" />
     <preference name="AppendUserAgent" value="MakeSoil" />
-    <preference name="targetDomain" value="https://makesoil2-staging.herokuapp.com" />
+    <preference name="targetDomain" value="https://www.makesoil.org" />
 </widget>

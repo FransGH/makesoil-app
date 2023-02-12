@@ -77,13 +77,15 @@
               "count": 1
             }
           ],
+          "/manifest/application/activity/intent-filter": [
+            {
+              "xml": "<data android:host=\"proxy.blink.at\" android:pathPrefix=\"/\" android:scheme=\"https\" />",
+              "count": 1
+            }
+          ],
           "/manifest/application": [
             {
-              "xml": "<meta-data android:name=\"com.google.firebase.messaging.default_notification_channel_id\" android:value=\"general\" />",
-              "count": 1
-            },
-            {
-              "xml": "<service android:exported=\"false\" android:name=\"notifications.MyFirebaseMessagingService\"><intent-filter><action android:name=\"com.google.firebase.MESSAGING_EVENT\" /></intent-filter></service>",
+              "xml": "<meta-data android:name=\"org.makesoil.app.targetdomain\" android:value=\"https://proxy.blink.at\" />",
               "count": 1
             }
           ]
