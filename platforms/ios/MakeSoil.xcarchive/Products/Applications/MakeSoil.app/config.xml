@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="org.makesoil.app" version="1.2.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="org.makesoil.app" version="1.2.10" xmlns="http://www.w3.org/ns/widgets" xmlns:android="schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <feature name="CDVWebViewEngine">
         <param name="ios-package" value="CDVWebViewEngine" />
     </feature>
@@ -64,7 +64,6 @@
     <allow-navigation href="https://www.youtube.com/*" />
     <allow-navigation href="https://www.dafdirect.org/*" />
     <allow-navigation href="https://donorbox.org/*" />
-    <splash src="res/production/ios/Default@2x~universal~anyany.png" />
     <edit-config file="*-Info.plist" mode="merge" target="ITSAppUsesNonExemptEncryption">
         <false />
     </edit-config>
@@ -104,6 +103,7 @@
     <icon height="50" src="res/production/ios/icon-50.png" width="50" />
     <icon height="100" src="res/production/ios/icon-50@2x.png" width="100" />
     <icon height="1024" src="res/production/ios/icon-1024.png" width="1024" />
+    <splash src="res/production/ios/Default@2x~universal~anyany.png" />
     <preference name="AllowInlineMediaPlayback" value="false" />
     <preference name="BackupWebStorage" value="cloud" />
     <preference name="DisallowOverscroll" value="false" />
@@ -117,10 +117,6 @@
     <preference name="PageLength" value="0" />
     <preference name="PaginationBreakingMode" value="page" />
     <preference name="PaginationMode" value="unpaginated" />
-    <preference name="android-targetSdkVersion" value="32" />
-    <preference name="GradlePluginKotlinVersion" value="1.6.20" />
-    <preference name="AndroidXEnabled" value="false" />
-    <preference name="GradlePluginGoogleServicesEnabled" value="false" />
     <preference name="AppendUserAgent" value="MakeSoil" />
     <preference name="targetDomain" value="https://www.makesoil.org" />
 </widget>
