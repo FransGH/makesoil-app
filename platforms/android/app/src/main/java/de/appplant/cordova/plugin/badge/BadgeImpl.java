@@ -17,6 +17,10 @@
 
 package de.appplant.cordova.plugin.badge;
 
+import static android.content.Context.NOTIFICATION_SERVICE;
+
+import static androidx.core.content.ContextCompat.getSystemService;
+
 import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -25,6 +29,7 @@ import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.service.notification.StatusBarNotification;
 import android.util.Log;
 
 import org.json.JSONException;
@@ -36,6 +41,8 @@ import static me.leolin.shortcutbadger.ShortcutBadger.isBadgeCounterSupported;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+
+import java.util.Arrays;
 
 /**
  * Implementation of the badge interface methods.
@@ -111,12 +118,22 @@ public final class BadgeImpl {
     }
 
     public void updateNotification(int badge) {
+        Log.d(TAG, "Updating notification count=" + badge);
+
         if(badge == 0) {
             NotificationManagerCompat.from(ctx).cancelAll();
             mBuilder = null;
         }
         else {
-            if (mBuilder == null) {
+            boolean found=false;
+            for (StatusBarNotification notification : ((NotificationManager) ctx.getSystemService(NOTIFICATION_SERVICE)).getActiveNotifications()) {
+                if (notification.getId() == 0xFBFB) {
+                    found = true;
+                    break;
+                }
+            }
+
+            if (mBuilder == null || !found) {
                 mBuilder = new NotificationCompat.Builder(ctx, "general");
             }
 
@@ -125,19 +142,23 @@ public final class BadgeImpl {
                 String className = launchIntent.getComponent().getClassName();
                 Class mainActivityClass = Class.forName(className).getClass();
                 Intent intent = new Intent (ctx, mainActivityClass);
+                intent.setAction(Intent.ACTION_MAIN);
+                intent.addCategory(Intent.CATEGORY_LAUNCHER);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+
                 TaskStackBuilder stackBuilder = TaskStackBuilder.create(ctx);
-//                stackBuilder.addParentStack(mainActivityClass);
-                stackBuilder.addNextIntent(intent);
+                stackBuilder.addNextIntent(launchIntent);
                 PendingIntent pendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
                 mBuilder.setNumber(badge)
                         .setSmallIcon(ctx.getResources().getIdentifier("notification_icons", "drawable", ctx.getPackageName()))
                         .setColor(ctx.getResources().getIdentifier("cdv_splashscreen_background", "color", ctx.getPackageName()))
                         .setContentTitle("MakeSoil")
-                        .setContentText(String.format("You have %d unread %s", badge, badge > 1 ? " messages" : "message"))
-//                    .setDefaults(Notification.DEFAULT_ALL)
+                        .setContentText(String.format("You have %d unread %s.", badge, badge > 1 ? " messages" : "message"))
                         .setContentIntent(pendingIntent)
                         .setSilent(true)
+                        .setWhen(System.currentTimeMillis())
+                        .setShowWhen(true)
                         .setPriority(Notification.PRIORITY_MIN);
                 NotificationManagerCompat.from(ctx).notify(0xFBFB, mBuilder.build());
             }

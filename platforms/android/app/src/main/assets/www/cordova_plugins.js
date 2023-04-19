@@ -71,6 +71,14 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "clobbers": [
         "pushNotification"
       ]
+    },
+    {
+      "id": "cordova-plugin-web-share.webshareapi",
+      "file": "plugins/cordova-plugin-web-share/www/webshareapi.js",
+      "pluginId": "cordova-plugin-web-share",
+      "merges": [
+        "navigator"
+      ]
     }
   ];
   module.exports.metadata = {
@@ -81,6 +89,7 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-geolocation": "4.1.0",
     "cordova-plugin-inappbrowser": "5.0.0",
     "cordova-plugin-nativestorage": "2.3.2",
-    "cordova-plugin-push-notifications": "1.0.1"
+    "cordova-plugin-push-notifications": "1.0.1",
+    "cordova-plugin-web-share": "0.0.1"
   };
 });

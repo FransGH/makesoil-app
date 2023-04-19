@@ -27,8 +27,6 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     private var currentToken = ""
 
     private var mainActivity: Class<*>? = null
-    private var notificationIcons = 0
-    private var notificationColor = 0
 
     override fun onNewToken(token: String) {
         super.onNewToken(token)
@@ -40,14 +38,9 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         notificationManager = ContextCompat.getSystemService(this, NotificationManager::class.java)
         Log.d(TAG, "creating push service")
         try {
-            val launchIntent: Intent? =
-                packageManager.getLaunchIntentForPackage(applicationContext.packageName)
+            val launchIntent: Intent? = packageManager.getLaunchIntentForPackage(applicationContext.packageName)
             val className = launchIntent?.component?.className as String
             mainActivity = Class.forName(className)
-            notificationIcons =
-                resources.getIdentifier("notification_icons", "drawable", packageName)
-            notificationColor =
-                resources.getIdentifier("cdv_splashscreen_background", "color", packageName)
 
             val channel: NotificationChannel
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -78,8 +71,6 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     }
 
     private fun sendNotification(data: Map<String, String>) {
-        val title = data["title"] ?: "MakeSoil"
-        val body = data["body"] ?: ""
         val channelId = data["android_channel_id"] ?: defaultNotificationChannelID
         val action = data["click_action"]
         val badgeCount = data["notification_count"] ?: "0"
@@ -103,16 +94,13 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         }
 
         // Create notification
-        val soundUri =
-            Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + applicationContext.packageName + "/raw/" + channelId)
-
         val notificationBuilder = NotificationCompat.Builder(this, channelId)
-            .setSmallIcon(notificationIcons)
-            .setColor(getColorWrapper(notificationColor))
-            .setSound(soundUri)
-            .setContentTitle(title)
-            .setContentText(body)
-            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setSmallIcon(resources.getIdentifier("notification_icons", "drawable", packageName))
+            .setColor(getColorWrapper(resources.getIdentifier("cdv_splashscreen_background", "color", packageName)))
+            .setSound(Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + applicationContext.packageName + "/raw/" + channelId))
+            .setContentTitle(data["title"] ?: "MakeSoil")
+            .setContentText(data["body"] ?: "")
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setAutoCancel(true)
             .setNumber(badgeCount.toInt())
             .setContentIntent(resultPendingIntent)

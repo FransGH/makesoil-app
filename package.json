@@ -20,6 +20,7 @@
     "cordova-plugin-inappbrowser": "^5.0.0",
     "cordova-plugin-nativestorage": "^2.3.2",
     "cordova-plugin-push-notifications": "^1.1.7",
+    "cordova-plugin-web-share": "github:arthuro555/cordova-webshare-api",
     "cordova-useragent": "github:LouisT/cordova-useragent"
   },
   "cordova": {
@@ -36,7 +37,8 @@
         "GPS_REQUIRED": "true"
       },
       "cordova-plugin-nativestorage": {},
-      "cordova-plugin-inappbrowser": {}
+      "cordova-plugin-inappbrowser": {},
+      "cordova-plugin-web-share": {}
     }
   },
   "scripts": {
@@ -47,8 +49,8 @@
     "build-staging-ios": "cp config_staging.xml config.xml && cordova build ios --device --release && rm -Rf platforms/ios/build/staging && mv platforms/ios/build/device platforms/ios/build/staging",
     "build-production-ios": "cp config_production.xml config.xml && cordova build ios --device --release && rm -Rf platforms/ios/build/production && mv platforms/ios/build/device platforms/ios/build/production",
     "---- Android ----": "",
-    "build-dev-android":        "./version.sh staging && cp config_dev.xml config.xml        && npm run clean-android && cordova build android",
-    "build-staging-android":    "./version.sh staging && cp config_staging.xml config.xml    && npm run clean-android && cordova build android --release && rm -Rf platforms/android/app/makesoil-staging.aab && cp platforms/android/app/build/outputs/bundle/release/app-release.aab platforms/android/app/makesoil-staging.aab",
+    "build-dev-android": "./version.sh staging && cp config_dev.xml config.xml        && npm run clean-android && cordova build android",
+    "build-staging-android": "./version.sh staging && cp config_staging.xml config.xml    && npm run clean-android && cordova build android --release && rm -Rf platforms/android/app/makesoil-staging.aab && cp platforms/android/app/build/outputs/bundle/release/app-release.aab platforms/android/app/makesoil-staging.aab",
     "build-production-android": "./version.sh production && cp config_production.xml config.xml && npm run clean-android && cordova build android --release && rm -Rf platforms/android/app/makesoil.aab         && cp platforms/android/app/build/outputs/bundle/release/app-release.aab platforms/android/app/makesoil.aab",
     "build-all-android": "npm run build-staging-android && npm run build-production-android && npm run build-dev-android",
     "---- Emulators ----": "",

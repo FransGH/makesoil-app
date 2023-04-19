@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="org.staging.makesoil.app" version="1.2.12" xmlns="http://www.w3.org/ns/widgets"
+<widget id="org.makesoil.app" version="1.3.2" xmlns="http://www.w3.org/ns/widgets"
         xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:android="schemas.android.com/apk/res/android">
     <name>MakeSoil</name>
-    <description>MakeSoil Staging</description>
+    <description>MakeSoil</description>
     <author email="dev@makesoil.org" href="https://makesoil.org">
         MakeSoil Dev Team
     </author>
@@ -11,8 +11,10 @@
     <allow-intent href="https://*/*"/>
     <access origin="about:*"/>
     <allow-navigation href="about:"/>
-    <access origin="https://proxy.blink.at"/>
-    <allow-navigation href="https://proxy.blink.at/*"/>
+    <access origin="https://makesoil.org"/>
+    <access origin="https://www.makesoil.org"/>
+    <allow-navigation href="makesoil.org/*"/>
+    <allow-navigation href="www.makesoil.org/*"/>
     <allow-navigation href="https://www.youtube.com/*"/>
     <allow-navigation href="https://www.dafdirect.org/*"/>
     <allow-navigation href="https://donorbox.org/*"/>
@@ -69,10 +71,10 @@
         <icon src="res/production/ios/icon-50@2x.png" width="100" height="100"/>
         <!-- iTunes Marketing Image -->
         <icon src="res/production/ios/icon-1024.png" width="1024" height="1024"/>
-        <splash src="res/staging/ios/Default@2x~universal~anyany.png"/>
+        <splash src="res/production/ios/Default@2x~universal~anyany.png"/>
     </platform>
     <platform name="android">
-        <resource-file src="res/staging/android/google-services.json" target="app/google-services.json"/>
+        <resource-file src="res/production/android/google-services.json" target="app/google-services.json"/>
         <preference name="AndroidWindowSplashScreenBackground" value="#45B139"/>
         <preference name="AndroidWindowSplashScreenAnimatedIcon"
                     value="platforms/android/app/src/main/res/drawable/ic_splashscreen.xml"/>
@@ -82,12 +84,12 @@
         <preference name="GradlePluginKotlinVersion" value="1.6.20"/>
         <preference name="GradlePluginGoogleServicesEnabled" value="true"/>
         <config-file target="AndroidManifest.xml" parent="/manifest/application/activity/intent-filter">
-            <data android:host="proxy.blink.at" android:pathPrefix="/" android:scheme="https" />
+            <data android:host="www.makesoil.org" android:pathPrefix="/" android:scheme="https" />
         </config-file>
         <config-file target="AndroidManifest.xml" parent="/manifest/application">
-            <meta-data android:name="org.makesoil.app.targetdomain" android:value="https://proxy.blink.at" />
+            <meta-data android:name="org.makesoil.app.targetdomain" android:value="https://www.makesoil.org" />
         </config-file>
     </platform>
     <preference name="AppendUserAgent" value="MakeSoil"/>
-    <preference name="targetDomain" value="https://proxy.blink.at"/>
+    <preference name="targetDomain" value="https://www.makesoil.org"/>
 </widget>

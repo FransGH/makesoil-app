@@ -57,6 +57,10 @@
             {
               "xml": "<feature name=\"NativeStorage\"><param name=\"android-package\" value=\"NativeStorage\" /></feature>",
               "count": 1
+            },
+            {
+              "xml": "<feature name=\"WebShareAPI\"><param name=\"android-package\" value=\"com.arthuro555.cordova.webshare.WebShareAPI\" /></feature>",
+              "count": 1
             }
           ]
         }
@@ -79,13 +83,13 @@
           ],
           "/manifest/application/activity/intent-filter": [
             {
-              "xml": "<data android:host=\"proxy.blink.at\" android:pathPrefix=\"/\" android:scheme=\"https\" />",
+              "xml": "<data android:host=\"www.makesoil.org\" android:pathPrefix=\"/\" android:scheme=\"https\" />",
               "count": 1
             }
           ],
           "/manifest/application": [
             {
-              "xml": "<meta-data android:name=\"org.makesoil.app.targetdomain\" android:value=\"https://proxy.blink.at\" />",
+              "xml": "<meta-data android:name=\"org.makesoil.app.targetdomain\" android:value=\"https://www.makesoil.org\" />",
               "count": 1
             }
           ]
@@ -95,29 +99,32 @@
   },
   "installed_plugins": {
     "cordova-plugin-add-swift-support": {
-      "PACKAGE_NAME": "org.staging.makesoil.app"
+      "PACKAGE_NAME": "org.makesoil.app"
     },
     "cordova-plugin-badge": {
-      "PACKAGE_NAME": "org.staging.makesoil.app"
+      "PACKAGE_NAME": "org.makesoil.app"
     },
     "cordova-plugin-customconfigparameters": {
-      "PACKAGE_NAME": "org.staging.makesoil.app"
+      "PACKAGE_NAME": "org.makesoil.app"
     },
     "cordova-plugin-device": {
-      "PACKAGE_NAME": "org.staging.makesoil.app"
+      "PACKAGE_NAME": "org.makesoil.app"
     },
     "cordova-plugin-geolocation": {
       "GPS_REQUIRED": "true",
-      "PACKAGE_NAME": "org.staging.makesoil.app"
+      "PACKAGE_NAME": "org.makesoil.app"
     },
     "cordova-plugin-inappbrowser": {
-      "PACKAGE_NAME": "org.staging.makesoil.app"
+      "PACKAGE_NAME": "org.makesoil.app"
     },
     "cordova-plugin-nativestorage": {
-      "PACKAGE_NAME": "org.staging.makesoil.app"
+      "PACKAGE_NAME": "org.makesoil.app"
     },
     "cordova-plugin-push-notifications": {
-      "PACKAGE_NAME": "org.staging.makesoil.app"
+      "PACKAGE_NAME": "org.makesoil.app"
+    },
+    "cordova-plugin-web-share": {
+      "PACKAGE_NAME": "org.makesoil.app"
     }
   },
   "dependent_plugins": {},
@@ -193,6 +200,14 @@
       "clobbers": [
         "pushNotification"
       ]
+    },
+    {
+      "id": "cordova-plugin-web-share.webshareapi",
+      "file": "plugins/cordova-plugin-web-share/www/webshareapi.js",
+      "pluginId": "cordova-plugin-web-share",
+      "merges": [
+        "navigator"
+      ]
     }
   ],
   "plugin_metadata": {
@@ -203,6 +218,7 @@
     "cordova-plugin-geolocation": "4.1.0",
     "cordova-plugin-inappbrowser": "5.0.0",
     "cordova-plugin-nativestorage": "2.3.2",
-    "cordova-plugin-push-notifications": "1.0.1"
+    "cordova-plugin-push-notifications": "1.0.1",
+    "cordova-plugin-web-share": "0.0.1"
   }
 }

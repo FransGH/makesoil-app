@@ -17,7 +17,7 @@
        under the License.
  */
 
-package org.staging.makesoil.app;
+package org.makesoil.app;
 
 import android.app.AlarmManager;
 import android.app.Notification;

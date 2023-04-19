@@ -15,8 +15,6 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
-import org.staging.makesoil.app.MainActivity
-import org.staging.makesoil.app.R
 import java.util.concurrent.atomic.AtomicInteger
 
 
