@@ -1,4 +1,4 @@
-VERSION="1.3.5"
+VERSION="1.3.6"
 
 REGEX="s/version=\"[0-9]\{1,2\}\.[0-9]\{1,2\}\.[0-9]\{1,2\}\"/version=\"$VERSION\"/g"
 sed -i '' -e $REGEX ./config_dev.xml
