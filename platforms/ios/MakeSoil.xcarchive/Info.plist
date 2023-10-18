@@ -13,9 +13,9 @@
 		<key>CFBundleIdentifier</key>
 		<string>org.makesoil.app</string>
 		<key>CFBundleShortVersionString</key>
-		<string>1.3.5</string>
+		<string>1.4.1</string>
 		<key>CFBundleVersion</key>
-		<string>1.3.5</string>
+		<string>1.4.1</string>
 		<key>SigningIdentity</key>
 		<string>Apple Development: Frans Bouwmeester (589G25UR4A)</string>
 		<key>Team</key>
@@ -24,7 +24,7 @@
 	<key>ArchiveVersion</key>
 	<integer>2</integer>
 	<key>CreationDate</key>
-	<date>2023-07-11T16:23:22Z</date>
+	<date>2023-10-18T09:38:38Z</date>
 	<key>Name</key>
 	<string>MakeSoil</string>
 	<key>SchemeName</key>

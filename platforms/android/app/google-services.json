@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1048939884531:android:6713127ef1044fa91aac86",
+        "mobilesdk_app_id": "1:1048939884531:android:0b2dd42ea2d605ce1aac86",
         "android_client_info": {
-          "package_name": "org.makesoil.app"
+          "package_name": "org.staging.makesoil.app"
         }
       },
       "oauth_client": [

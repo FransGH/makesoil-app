@@ -80,18 +80,6 @@
               "xml": "<uses-feature android:name=\"android.hardware.location.gps\" android:required=\"true\" />",
               "count": 1
             }
-          ],
-          "/manifest/application/activity/intent-filter": [
-            {
-              "xml": "<data android:host=\"www.makesoil.org\" android:pathPrefix=\"/\" android:scheme=\"https\" />",
-              "count": 1
-            }
-          ],
-          "/manifest/application": [
-            {
-              "xml": "<meta-data android:name=\"org.makesoil.app.targetdomain\" android:value=\"https://www.makesoil.org\" />",
-              "count": 1
-            }
           ]
         }
       }
